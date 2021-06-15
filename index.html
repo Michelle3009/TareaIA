@@ -20,18 +20,18 @@
     <div id='main' style="margin: 20px">
 
       <h3>Ingrese la frase en Inglés para evaluar</h3>
-      <form id="form" style="display: flex;flex-direction: column; justify-content: center; align-items: center; padding:30px">
+      <div id="form" style="display: flex;flex-direction: column; justify-content: center; align-items: center; padding:30px">
         <input id="form-text-input" rows="2" placeholder="Frase" required="">
         <div class="column">
-          <button id="form-text" type="submit" 
+          <button id="form-text"
           style="background-color: teal; border-style: none;color:white;font-size: 15px; width: 150px;
-          height: 35px; margin:25px;" >
+          height: 35px; margin:25px;" onclick="predict()">
           clasificar
         </div>
         <p id="p"></p>
             <div class="loader"></div>
           </div>
-        </form>
+        </div>
         <div id="tableResults"></div>
       </div>
       <script type="text/javascript" src="index.js"></script>

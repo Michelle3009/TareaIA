@@ -18,17 +18,19 @@ const addPredictions = (predictions) => {
   predictions.forEach(d => {
     const predictionDom = `<div class="column">
       <div class="text">${d.text}</div>
-        <div class="text">${d.insult}</div>
+        <div class="text">${d.toxicity}</div>
     </div>`;
     tableWrapper.insertAdjacentHTML('beforeEnd', predictionDom);
   });
 };
 
 const predict = async () => {
+  console.log('hola222222222')
   const text = document.querySelector('#p');
   text.textContent="Cargando módelo..."
   model = await toxicity.load();
-    text.textContent="¡Modelo Cragado!"
+    text.textContent="¡Modelo Cargado!"
+    text.textContent="Esperando el resultado..."
   labels = model.model.outputNodes.map(d => d.split('/')[0]);
 
   const tableWrapper = document.querySelector('#tableResults');
@@ -38,13 +40,11 @@ const predict = async () => {
     <div class="text">¿Negativo?</div>
   </div>`);
 
-  document.querySelector('#form')
-      .addEventListener('submit', (e) => {
-        text.textContent="Esperando el resultado..."
-        const text = document.querySelector('#form-text-input').value;
+        
+        const text1 = document.querySelector('#form-text-input').value;
         document.querySelector('#form-text-input').disable = true;
         //document.querySelector('#loader').getElementsByClassName.visibility = 'visible';
-        const predictions = classify([text]).then(d => {
+        const predictions = classify([text1]).then(d => {
           addPredictions(d);
           text.textContent="¡Obtenido!"
         })
@@ -54,9 +54,6 @@ const predict = async () => {
           document.querySelector('#form-text-input').disable = false;
         });
 
-        // Prevent submitting the form which would cause a page reload.
-        e.preventDefault();
-      });
+
 };
 
-predict();
